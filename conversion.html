@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Conversion</title>
+	<link rel="stylesheet" href = "conversion.css">
+	<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Short+Stack&display=swap" rel="stylesheet">
+</head>
+<body>
+	<form method="post" id="conversionForm">
+		<div id="inputposition">
+			<label for="inputValue" class="label1">Enter Value to Convert:</label>
+			<input type="number" id="inputValue" placeholder="Enter Value" required>
+		</div>
+		<div id="outputposition">
+			<label for="result" class="label2">Results will appear here:</label>
+			<input type="text" id="result" placeholder="Result of the Conversion" readonly>
+		</div>
+	</form>
+	<form id="lowerbuttons">
+		<div>
+			<button type="button" class="conv-btn" data-conversion="FarToCel">Fahrenheit to Celsius</button>
+			<button type="button" class="conv-btn" data-conversion="CelToFar">Celsius to Fahrenheit</button>
+			<button type="button" class="conv-btn" data-conversion="MtToFt">Meters to Feet</button>
+			<button type="button" class="conv-btn" data-conversion="FtToMt">Feet to Meters</button>
+		</div>
+	</form>
+</body>
+<script>
+	document.querySelectorAll(".conv-btn").forEach(button => {
+		button.addEventListener("click", () => {
+			const conversionType = button.getAttribute("data-conversion");
+			const inputValue = parseFloat(document.getElementById("inputValue").value);
+
+			if (isNaN(inputValue)) {
+				document.getElementById("result").value = "Please enter a valid number.";
+				return;
+			}
+
+			let result;
+			switch (conversionType) {
+				case "FarToCel":
+					result = ((inputValue - 32) * 5) / 9;
+					break;
+				case "CelToFar":
+					result = (inputValue * 9) / 5 + 32;
+					break;
+				case "MtToFt":
+					result = inputValue * 3.28084;
+					break;
+				case "FtToMt":
+					result = inputValue / 3.28084;
+					break;
+				default:
+					result = "Unknown conversion type.";
+			}
+
+			document.getElementById("result").value = `${result.toFixed(2)}`;
+		});
+	});
+</script>
+</html>

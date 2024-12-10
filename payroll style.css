@@ -1,0 +1,164 @@
+<style>
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fredoka', sans-serif;
+    background-color: #fef5e7; 
+    color: #4d4d4d; 
+}
+
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f6f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: 2px solid #f8c8dc; 
+}
+
+/* Heading */
+.container h2 {
+    text-align: center;
+    color: #ff6f91; /* Vibrant pink */
+    text-shadow: 2px 2px 4px rgba(255, 111, 145, 0.3);
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Table Design */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+    text-align: left;
+}
+
+thead {
+    background-color: #f8c8dc; /* Light pink */
+    color: #4d4d4d;
+    font-weight: bold;
+}
+
+thead td {
+    text-align: center;
+}
+
+tfoot {
+    background-color: #ffd5e1; /* Softer pink */
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+table, td, th {
+    border: 1px solid #ffd5e1; /* Matching border */
+}
+
+td, th {
+    padding: 12px 15px;
+}
+
+.ndata {
+    text-align: right;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fdf3f7; /* Very light pink for row alternation */
+}
+
+/* Input and Buttons */
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ffd5e1;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff6f91; /* Highlight on focus */
+    box-shadow: 0 0 4px rgba(255, 111, 145, 0.5);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ff6f91; /* Vibrant pink */
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e55b7e; /* Slightly darker pink on hover */
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button#btndelete {
+    background-color: #ff6b6b; /* Soft red for delete */
+}
+
+button#btndelete:hover {
+    background-color: #e55b5b;
+}
+
+button#btndeleteall {
+    background-color: #ffb347; /* Warm orange for delete all */
+}
+
+button#btndeleteall:hover {
+    background-color: #e59b3c;
+}
+
+/* Form Section */
+div h3 {
+    color: #ff6f91;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Footer Section */
+tfoot td {
+    text-align: right;
+}
+
+/* Modal Buttons Styling */
+#dlgConfirmCancel, #dlgAreYouSure {
+    background-color: #ffeff5; /* Light pinkish background */
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#btnConfirm, #btnYes {
+    background-color: #6BCB77; /* Soft green for confirm/yes */
+    color: white;
+}
+
+#btnCancel, #btnNo {
+    background-color: #ff6f91; /* Pink for cancel/no */
+    color: white;
+}
+
+.dlgbuttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+</style>

@@ -1,0 +1,125 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Simple Payroll</title>
+	<link rel="stylesheet" type="text/css" href="payroll style.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Simple Payroll</h2>
+		<table>
+			<thead>
+				<tr>
+					<td>Employee No.</td>
+					<td>Employee Name</td>
+					<td>Days Worked</td>
+					<td>Daily Rate</td>
+					<td>Gross Pay</td>
+					<td>Deduction</td>
+					<td>Net Pay</td>
+				</tr>
+			</thead>
+			<tbody id="tablebody">
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td id="tGrossPay" class="ndata">0.00</td>
+					<td id="tDeduction" class="ndata">0.00</td>
+					<td id="tNetPay" class="ndata">0.00</td>
+				</tr>
+			</tfoot>
+		</table>
+		<div>
+			<h3>Add Employee</h3>
+			<label>Name:</label><input id="empName" type="text"><br>
+			<label>Days Worked:</label><input id="empDays" type="number"><br>
+			<label>Daily Rate:</label><input id="empRate" type="number"><br>
+			<label>Deduction:</label><input id="empDeduction" type="number"><br>
+			<button id="btnAddEmployee">Add Employee</button>
+		</div>
+		<br>
+		<br>
+		<div>
+			<label>Delete Emp. No.</label>
+			<input id="delemployee" type="number">
+			<button id="btndelete">Delete</button>
+			<button id="btndeleteall">Delete All</button>
+		</div>
+	</div>
+	<script>
+		let payroll = [];
+
+		function showEmployees() {
+			let tb = "", tgpay = 0.00, tded = 0.00, tnetpay = 0.00;
+			let lno = 1;
+			for (let emp of payroll) {
+				let grosspay = emp.daysworked * emp.dailyrate;
+				let netpay = grosspay - emp.deduction;
+				tb += `<tr>
+						<td style="text-align:right">${lno}</td>
+						<td>${emp.name}</td>
+						<td class="ndata">${emp.daysworked.toFixed(2)}</td>
+						<td class="ndata">${emp.dailyrate.toFixed(2)}</td>
+						<td class="ndata">${grosspay.toFixed(2)}</td>
+						<td class="ndata">${emp.deduction.toFixed(2)}</td>
+						<td class="ndata">${netpay.toFixed(2)}</td>
+					</tr>`;
+				tgpay += grosspay;
+				tded += emp.deduction;
+				tnetpay += netpay;
+				lno++;
+			}
+			document.getElementById("tablebody").innerHTML = tb;
+			document.getElementById("tGrossPay").innerHTML = tgpay.toFixed(2);
+			document.getElementById("tDeduction").innerHTML = tded.toFixed(2);
+			document.getElementById("tNetPay").innerHTML = tnetpay.toFixed(2);
+		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+			document.getElementById("btnAddEmployee").addEventListener("click", () => {
+				let name = document.getElementById("empName").value;
+				let daysworked = parseFloat(document.getElementById("empDays").value);
+				let dailyrate = parseFloat(document.getElementById("empRate").value);
+				let deduction = parseFloat(document.getElementById("empDeduction").value);
+
+				if (name && daysworked && dailyrate && deduction >= 0) {
+					payroll.push({ name, daysworked, dailyrate, deduction });
+					showEmployees();
+
+					// Clear input fields
+					document.getElementById("empName").value = "";
+					document.getElementById("empDays").value = "";
+					document.getElementById("empRate").value = "";
+					document.getElementById("empDeduction").value = "";
+				} else {
+					alert("Please fill out all fields with valid values.");
+				}
+			});
+
+			document.getElementById("btndelete").addEventListener("click", () => {
+				let x = parseInt(document.getElementById("delemployee").value) - 1;
+				if (x >= 0 && x < payroll.length) {
+					payroll.splice(x, 1);
+					showEmployees();
+				} else {
+					alert("Invalid employee number.");
+				}
+				document.getElementById("delemployee").value = '';
+			});
+
+			document.getElementById("btndeleteall").addEventListener("click", () => {
+				if (confirm("Are you sure you want to delete all records?")) {
+					payroll = [];
+					showEmployees();
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Factorial, Sum, and Average</title>
+	<link rel = "stylesheet" href = 'nnumbers style.css'>
+	<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Short+Stack&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id = "buttons">
+		<h5>Please choose an option to perform:</h5>
+		<button id = "factorial">Factorial of First N Natural Numbers</button>
+		<button id = "sum">Sum of Numbers</button>
+		<button id = "average">Average of Two Numbers</button>
+	</div>
+	<div id = "modal" class = "hidden">
+		<div id = "modalContent">
+			<span id = "xbutton">&times;</span>
+			<h4>Enter Numbers</h4>
+			<input type = "text" id = "inputValues" placeholder="Enter numbers separated by commas">
+			<button id = "calculate">Calculate</button>
+			<p id = "result">Results will appear here</p>
+		</div>
+	</div>
+
+    <script>
+		document.getElementById("factorial").addEventListener("click", () => openModal("factorial"));
+		document.getElementById("sum").addEventListener("click", () => openModal("sum"));
+		document.getElementById("average").addEventListener("click", () => openModal("average"));
+		
+
+		document.getElementById("xbutton").addEventListener("click", closeModal);
+
+		document.getElementById("calculate").addEventListener("click", () => {
+			const values = document.getElementById("inputValues").value.split(",").map(num => parseFloat(num.trim()));
+
+			if (values.some(isNaN)) {
+				document.getElementById("result").textContent = "Please enter valid numbers.";
+				return;
+			}
+
+			const action = document.querySelector(".modal-action").dataset.action;
+
+			const operations = {
+
+				factorial: (num) => {
+					let result = 1;
+					let i = 1;
+					while (i <= num) {
+						result *= i;
+						i++;
+					}
+					return result;
+				},
+
+				sum: (nums) => {
+					let total = 0;
+					let i = 0;
+					do {
+						total += nums[i];
+						i++;
+					} while (i < nums.length);
+					return total;
+				},
+
+				average: (nums) => {
+					let total = 0;
+					for (let i = 0; i < nums.length; i++) {
+						total += nums[i];
+					}
+					return total / nums.length;
+				}
+			};
+
+			let result;
+			if (action === "factorial") {
+				result = operations.factorial(values[0]);
+			} else if (action === "sum") {
+				result = operations.sum(values);
+			} else if (action === "average") {
+				result = operations.average(values);
+			}
+
+			document.getElementById("result").textContent = `Result: ${result}`;
+		});
+
+		function openModal(action) {
+			const modal = document.getElementById("modal");
+			modal.style.display = "flex"; // Show the modal
+			document.querySelector("#modalContent").classList.add("modal-action");
+			document.querySelector(".modal-action").dataset.action = action;
+		}
+
+		function closeModal() {
+			const modal = document.getElementById("modal");
+			modal.style.display = "none"; // Hide the modal
+		}
+    </script>
+</body>
+</html>

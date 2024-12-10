@@ -1,0 +1,95 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: block;
+    justify-content: center; 
+    align-items: center; 
+    background-image: url("Conversion BG.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Chewy', sans-serif; /* Font adjustment */
+    max-width: 100%;
+}
+
+#conversionForm {
+    width: 80%;
+    margin-top: 80px;
+    text-align: center;
+    padding: 20px;
+    display: inline-block !important; 
+    align-items: center;
+    align-content: center;
+    margin-left: 6%;
+}
+
+#inputposition, #outputposition {
+    margin-bottom: 20px;
+    margin-left: 30px;
+    align-items: center;
+    text-align: center;
+    display: inline-block !important;
+    width: 30%;
+    gap: 20px;
+}
+
+.label1, .label2 {
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #63498d;
+    margin-bottom: 10px;
+}
+
+#inputValue, #result {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #cfc5b3;
+    border-radius: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+#lowerbuttons{
+	display: inline-block;
+	position: relative;
+	left: 34%;
+	width: 100%;
+}
+
+button.conv-btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: 'Fredoka', sans-serif;
+    width: 30%;
+    padding: 15px;
+    background-color: #8d839d;
+    color: #f8f6f0;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px; /* Rounded button */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px; /* Spacing between buttons */
+    display: block;
+}
+
+button.conv-btn:hover {
+    background-color: #f8f6f0;
+    color: #8d839d;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    #conversionForm {
+        padding: 15px;
+    }
+    .conv-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
